@@ -14,11 +14,11 @@ services:
       - conf:/etc/nginx/conf.d
       - dhparam:/etc/nginx/dhparam
       - /var/run/docker.sock:/tmp/docker.sock:ro
-    network_mode: bridge
+    restart: always
 
   letsencrypt:
     image: jrcs/letsencrypt-nginx-proxy-companion
-    container_name: nginx-proxy-le
+    container_name: nginx-proxy-letsencrypt
     volumes:
       - certs:/etc/nginx/certs:ro
       - vhost:/etc/nginx/vhost.d
@@ -26,7 +26,7 @@ services:
       - conf:/etc/nginx/conf.d
       - dhparam:/etc/nginx/dhparam
       - /var/run/docker.sock:/tmp/docker.sock:ro
-    network_mode: bridge
+    restart: always
 
 volumes:
   conf:
